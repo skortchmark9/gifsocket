@@ -4,9 +4,12 @@ require __DIR__.'/../vendor/autoload.php';
 
 function createGifFrame(array $messages)
 {
-    $im = imagecreatetruecolor(1, 1);
+    $im = imagecreatetruecolor(500, 400);
 
-    imagefilledrectangle($im, 0, 0, 1, 1, 0x000000);
+    imagefilledrectangle($im, 0, 0, 500, 400, 0x000000);
+    foreach ($messages as $i => $message) {
+        imagestring($im, 3, 40, 20 + $i*20, $message, 0xFFFFFF);
+    }
 
     ob_start();
 
