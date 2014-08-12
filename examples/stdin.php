@@ -4,12 +4,9 @@ require __DIR__.'/../vendor/autoload.php';
 
 function createGifFrame(array $messages)
 {
-    $im = imagecreatetruecolor(500, 400);
+    $im = imagecreatetruecolor(1, 1);
 
-    imagefilledrectangle($im, 0, 0, 500, 400, 0x000000);
-    foreach ($messages as $i => $message) {
-        imagestring($im, 3, 40, 20 + $i*20, $message, 0xFFFFFF);
-    }
+    imagefilledrectangle($im, 0, 0, 1, 1, 0x000000);
 
     ob_start();
 
@@ -30,7 +27,6 @@ function sendEmptyFrameAfter($gifServer)
 $loop = React\EventLoop\Factory::create();
 $socket = new React\Socket\Server($loop);
 $http = new React\Http\Server($socket);
-
 $gifServer = new React\Gifsocket\Server($loop);
 
 $messages = [];
@@ -53,12 +49,12 @@ $stdin->on('data', function ($data) use ($addMessage) {
 });
 
 $router = new React\Gifsocket\Router([
-    '/' => sendEmptyFrameAfter($gifServer),
+    '/socket3.gif' => sendEmptyFrameAfter($gifServer),
 ]);
+
 
 $http->on('request', $router);
 
-echo "Webserver running on localhost:8080\n";
-
-$socket->listen(8080);
+echo "Webserver running on 172.31.33.154\n";
+$socket->listen(8080, '172.31.33.154');
 $loop->run();

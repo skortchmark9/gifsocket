@@ -57,3 +57,4 @@ class GifStream extends EventEmitter implements ReadableStreamInterface
         return $dest;
     }
 }
+

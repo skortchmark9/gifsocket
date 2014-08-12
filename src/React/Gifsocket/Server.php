@@ -31,12 +31,13 @@ class Server
 
     public function __invoke($request, $response)
     {
+
         $response->writeHead(200, [
-            'Content-Type'  => 'image/gif',
             'Cache-Control' => 'no-cache, no-store',
             'Pragma'        => 'no-cache',
+	    'Content-Type'  => 'image/gif',
+	    'Content-Length'=> 0,
         ]);
-
         $gif = $this->createGifStream();
         $gif->pipe($response);
 
@@ -44,6 +45,7 @@ class Server
 
         $response->on('close', function () use ($gif) {
             $this->gifStreams->detach($gif);
+            echo 'this works';
             $gif->close();
         });
     }
