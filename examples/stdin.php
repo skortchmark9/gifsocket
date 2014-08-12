@@ -52,7 +52,7 @@ $stdin->on('data', function ($data) use ($addMessage) {
 });
 
 $router = new React\Gifsocket\Router([
-    '/socket.gif' => sendEmptyFrameAfter($gifServer),
+    '/' => sendEmptyFrameAfter($gifServer),
 ]);
 
 $http->on('request', $router);

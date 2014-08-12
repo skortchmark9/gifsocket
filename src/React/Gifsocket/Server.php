@@ -32,11 +32,10 @@ class Server
     public function __invoke($request, $response)
     {
 
-        $response->writeHead(204, [
+        $response->writeHead(200, [
             'Cache-Control' => 'no-cache, no-store',
             'Pragma'        => 'no-cache',
 	        'Content-Type'  => 'image/gif',
-	        'Content-Length'=> 0,
         ]);
         $gif = $this->createGifStream();
         $gif->pipe($response);
