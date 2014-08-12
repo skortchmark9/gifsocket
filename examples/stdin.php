@@ -55,6 +55,9 @@ $router = new React\Gifsocket\Router([
 
 $http->on('request', $router);
 
-echo "Webserver running on 172.31.33.154\n";
-$socket->listen(8080, '172.31.33.154');
+$hostname = isset($argv[1]) ? $argv[1] : '127.0.0.1';
+
+echo "Webserver running on {$hostname}\n";
+
+$socket->listen(8080, $hostname);
 $loop->run();
