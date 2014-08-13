@@ -36,7 +36,6 @@ class Server
             'Cache-Control' => 'no-cache, no-store',
             'Pragma'        => 'no-cache',
 	        'Content-Type'  => 'image/gif',
-            'Content-Length' => 0,
         ]);
         $gif = $this->createGifStream();
         $gif->pipe($response);
