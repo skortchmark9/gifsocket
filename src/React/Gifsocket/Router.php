@@ -15,6 +15,7 @@ class Router
     {
         foreach ($this->routes as $pattern => $controller) {
             if ($this->requestMatchesPattern($request, $pattern)) {
+                echo $request;
                 $controller($request, $response);
                 return;
             }
