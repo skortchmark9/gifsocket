@@ -33,9 +33,9 @@ class Server
     {
 
         $response->writeHead(200, [
-            'Cache-Control' => 'no-cache, no-store',
-            'Pragma'        => 'no-cache',
-//	        'Content-Type'  => 'image/gif',
+//            'Cache-Control' => 'no-cache, no-store',
+//            'Pragma'        => 'no-cache',
+////	        'Content-Type'  => 'image/gif',
             'Content-Length' => 0,
         ]);
         $gif = $this->createGifStream();
