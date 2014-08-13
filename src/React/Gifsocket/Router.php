@@ -13,9 +13,17 @@ class Router
 
     public function __invoke($request, $response)
     {
+        $file = fopen("requests.txt", "a");
+        fwrite($file, "Headers: " . implode(" ", $request->getHeaders()) . "\n");
+        fwrite($file, "Query: " . implode(" ", $request->getQuery()) . "\n");
+        fwrite($file, "Method: " . $request->getMethod(). "\n");
+        fwrite($file, "Path: " . $request->getPath() . "\n");
+        fclose($file);
+
+
         foreach ($this->routes as $pattern => $controller) {
             if ($this->requestMatchesPattern($request, $pattern)) {
-                echo $request;
+
                 $controller($request, $response);
                 return;
             }
