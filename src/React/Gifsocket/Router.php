@@ -14,10 +14,12 @@ class Router
     public function __invoke($request, $response)
     {
         $file = fopen("requests.txt", "a");
+        fwrite($file, "===========================================REQUEST==============================================\n");
         fwrite($file, "Headers: " . implode(" ", $request->getHeaders()) . "\n");
         fwrite($file, "Query: " . implode(" ", $request->getQuery()) . "\n");
         fwrite($file, "Method: " . $request->getMethod(). "\n");
         fwrite($file, "Path: " . $request->getPath() . "\n");
+        fwrite($file, "==================================================================================================\n\n");
         fclose($file);
 
 
